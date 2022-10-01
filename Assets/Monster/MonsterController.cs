@@ -27,7 +27,7 @@ public class MonsterController : MonoBehaviour
         if (!canMove) return;
 
         Debug.Log("Distance to player: " + aiPath.remainingDistance);
-        Gizmos.DrawLine(transform.position, destination);
+        Gizmos.DrawLine(transform.position, aiPath.destination);
         aiPath.Move(aiPath.desiredVelocity * moveSpeed * Time.deltaTime);
         if (aiPath.reachedDestination) {
             canMove = false;
