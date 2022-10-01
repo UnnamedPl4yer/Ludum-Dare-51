@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerStealth : MonoBehaviour
 {
-
-    private RigidBody2D rb;
+    private Rigidbody2D rb;
     
     private bool hiddenInBush = false;
     public float targetingInaccuracyWhileMovingInBush;
