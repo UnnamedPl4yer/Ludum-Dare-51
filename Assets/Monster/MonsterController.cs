@@ -85,6 +85,6 @@ public class MonsterController : MonoBehaviour
         while (!node.Walkable) {
             node = AstarPath.active.GetNearest(playerTransform.position + targetingInaccuracy * breathMultiplier).node;
         } 
-        return (Vector3)(node.position)
+        return (Vector3)(node.position);
     }
 }
