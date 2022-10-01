@@ -7,25 +7,35 @@ public class PlayerAir : MonoBehaviour
     private Rigidbody2D rb;
 
     // Stealth - Stop breathing
-    public int maxAir = 100;
-    public int airDecreaseRate = 10; // per second
-    public int airIncreaseRate = 5; // per second
-    public int chokingThreshold = 20;
-    public float airMoveMultiplier = 1.2f; // x increase while moving
-    [SerializeField] private float currentAir = 100;
+    [SerializeField] private int maxAir;
+    [SerializeField] private int airDecreaseRate; // per second
+    [SerializeField] private int airIncreaseRate; // per second
+    [SerializeField] private int chokingThreshold;
+    [SerializeField] private float airMoveMultiplier; // x increase while moving
+    [SerializeField] private float currentAir;
+
+    public float targetingInaccuracyWhileChoking;
+    public float targetingInaccuracyWhileHoldingBreath;
+    public float currentBreathMultiplier;
     [SerializeField] private bool isChoking = false;
+    [SerializeField] private bool isHoldingBreath = false;
 
     // Called only once after GameObject initialization
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+        currentAir = maxAir;
     }
 
     // Update is called once per frame
     void Update() {
         if (Input.GetKey("e") && !isChoking) {
             DecreaseAir();
+            isHoldingBreath = true; 
+            currentBreathMultiplier = targetingInaccuracyWhileHoldingBreath;
         } else {
             IncreaseAir();
+            isHoldingBreath = false;
+            currentBreathMultiplier = isChoking ? targetingInaccuracyWhileChoking : 1.0f;
         }
     }
 
