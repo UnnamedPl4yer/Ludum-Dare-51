@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1541580294, guid: ed7279af8f95dd949ba661e06e781923, type: 3}
+  m_Sprite: {fileID: 505341531, guid: ed7279af8f95dd949ba661e06e781923, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
   - {x: -0.4999978, y: 0.15693273, z: 0}
   m_ShapePathHash: -802760276
   m_Mesh: {fileID: 0}
-  m_InstanceId: -66200
+  m_InstanceId: 41136
 --- !u!61 &264027537988848100
 BoxCollider2D:
   m_ObjectHideFlags: 0
