@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Flicker2 : MonoBehaviour
 {
     public new Light2D light;
-    public new Light2D outerLight;
+    public Light2D outerLight;
     public float minIntensity = 0f;
     public float maxIntensity = 1f;
     public int currentLevel = 0;

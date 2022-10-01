@@ -17,16 +17,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update() {
         if (Input.GetMouseButton(1)) {
-            // animator.SetBool("igniting", true);    
+            // animator.SetBool("igniting", true);
+            moveVector = new Vector2(0, 0);
             return;
         }
         GetMovement();
         // animator.SetBool("igniting", false);
         animator.SetBool("moving", moveVector.magnitude > 0.0f);
+        float localScaleX = transform.localScale.x;
         if (moveVector.x > 0.0f) {
-            transform.localScale = new Vector2( -1, transform.localScale.y);
+            transform.localScale = new Vector2( -1 * Mathf.Abs(localScaleX), transform.localScale.y);
         } else {
-            transform.localScale = new Vector2(1, transform.localScale.y);
+            transform.localScale = new Vector2(Mathf.Abs(localScaleX), transform.localScale.y);
         }
     }
 

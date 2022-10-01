@@ -5,28 +5,27 @@ using TMPro;
 
 public class DialogueScript : MonoBehaviour
 {
+    public TextMeshProUGUI speakerElement;
     public TextMeshProUGUI textElement;
-    public GameObject dialogParent;
+    [SerializeField] private GameObject dialogueParent;
     public Dialogue dialogue;
     private int index;
 
     // Start is called before the first frame update
     void Start() {
-        textElement.text = dialogue.speaker + ": ";
+        speakerElement.text = string.Empty;
+        textElement.text = string.Empty;
         StartDialogue();
-        Debug.Log(dialogue.lines);
+        // Debug.Log(dialogue.lines);
     }
 
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            Debug.Log("Next!");
-            if (textElement.text == dialogue.speaker + ": " + dialogue.lines[index]) {
+            if (textElement.text == dialogue.lines[index].Replace("#", string.Empty)) {
                 NextLine();
-                Debug.Log("Next Line!");
             } else {
                 StopAllCoroutines();
-                textElement.text = dialogue.speaker + ": " + dialogue.lines[index];
-                Debug.Log("Fill Line!");
+                textElement.text = dialogue.lines[index].Replace("#", string.Empty);
             }
         }
     }
@@ -39,14 +38,16 @@ public class DialogueScript : MonoBehaviour
     void NextLine() {
         if (index < dialogue.lines.Length - 1) {
             index++;
-            textElement.text = dialogue.speaker + ": ";
+            speakerElement.text = dialogue.speaker;
+            textElement.text = string.Empty;
             StartCoroutine(TypeLine());
         } else {
-            dialogParent.SetActive(false);
+            dialogueParent.SetActive(false);
         }
     }
 
     IEnumerator TypeLine() {
+        speakerElement.text = dialogue.speaker;
         foreach (char c in dialogue.lines[index].ToCharArray()) {
             if (c == '#') {
                 yield return new WaitForSeconds(2.0f);
