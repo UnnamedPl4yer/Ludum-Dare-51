@@ -9,6 +9,7 @@ public class MonsterMovement : MonoBehaviour
     public Rigidbody2D rb;
     public AIPath aiPath;
     private GridGraph aiGrid;
+    private Animator animator;
 
     // Far tracking
     [SerializeField] private PlayerAir playerAirComponent;
@@ -27,6 +28,7 @@ public class MonsterMovement : MonoBehaviour
     // Start ist called once
     void Start() {
         aiGrid = AstarPath.active.data.gridGraph;
+        animator = GetComponent<Animator>();
         aiPath.maxSpeed = moveSpeed;
         aiPath.endReachedDistance = 0.1f;
         StartCoroutine(WaitUntilCanMove());
@@ -34,6 +36,14 @@ public class MonsterMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        // Animations
+        animator.SetBool("moving", aiPath.desiredVelocity.magnitude > 0.0f);
+        if (aiPath.desiredVelocity.x > 0.0f) {
+            transform.localScale = new Vector2( -1, transform.localScale.y);
+        } else {
+            transform.localScale = new Vector2(1, transform.localScale.y);
+        }
+        // Actual movement
         if (!isHunting) {
             StalkPlayer();
         } else {
@@ -47,6 +57,7 @@ public class MonsterMovement : MonoBehaviour
 
         // Debug.Log("Distance to player: " + aiPath.remainingDistance);
         aiPath.Move(aiPath.desiredVelocity.normalized * moveSpeed * Time.deltaTime);
+        // rb.velocity = aiPath.desiredVelocity.normalized * moveSpeed * Time.deltaTime;
         if (aiPath.reachedDestination) {
             canMove = false;
             StartCoroutine(WaitUntilCanMove());
@@ -57,6 +68,7 @@ public class MonsterMovement : MonoBehaviour
         aiPath.canMove = isHunting;
         aiPath.destination = playerTransform.position;
         aiPath.Move(aiPath.desiredVelocity.normalized * moveSpeed * Time.deltaTime);
+        // rb.velocity = aiPath.desiredVelocity.normalized * moveSpeed * Time.deltaTime;
     }
 
     // Debug stuff for visualization

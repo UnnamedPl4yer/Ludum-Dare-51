@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 307d52557781f194ba572a13f26b9533
+guid: 431118a44ba37b742a0d4801a94c103a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,23 +101,53 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Monster_0
+      name: Player_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8a9ab819eb7d4248b71fd3974a035bf
+      internalID: -1427959841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec98d5f259420b34080486b31d2d670f
+      internalID: 1476252554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_2
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2963658130ce98740a15c15d61db2af6
-      internalID: 238822759
+      spriteID: 5e203ad6176463e4c94c807eaed185c7
+      internalID: -273247754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monster_1
+      name: Player_3
       rect:
         serializedVersion: 2
         x: 64
@@ -152,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf9f8375e6de0ad4a9ea2da673e04c45
-      internalID: 879197463
+      spriteID: 95837e2c6d4433a46aab9198d6a7514f
+      internalID: 1260116400
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monster_2
+      name: Player_4
       rect:
         serializedVersion: 2
         x: 0
@@ -173,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a387aac316dcb0459c40325cb1d30e8
-      internalID: 2048013664
+      spriteID: 637e87e5fe5b674458cf68189fbe42e2
+      internalID: 690343617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monster_3
+      name: Player_5
       rect:
         serializedVersion: 2
         x: 64
@@ -194,8 +224,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d315762852e48b4ab8dc8eefbfa7e6e
-      internalID: -1825721747
+      spriteID: 09ddf9891f42f304b9435441c34b854f
+      internalID: 165307522
       vertices: []
       indices: 
       edges: []
@@ -211,10 +241,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Monster_3: -1825721747
-      Monster_2: 2048013664
-      Monster_0: 238822759
-      Monster_1: 879197463
+      Player_2: -273247754
+      Player_4: 690343617
+      Player_1: 1476252554
+      Player_0: -1427959841
+      Player_3: 1260116400
+      Player_5: 165307522
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -8,18 +8,23 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveVector;
     
     private Rigidbody2D rb;
+    private Animator animator;
 
-    // Called only once after GameObject initialization
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
-    // Called once per Frame
     void Update() {
         GetMovement();
+        animator.SetBool("moving", moveVector.magnitude > 0.0f);
+        if (moveVector.x > 0.0f) {
+            transform.localScale = new Vector2( -1, transform.localScale.y);
+        } else {
+            transform.localScale = new Vector2(1, transform.localScale.y);
+        }
     }
 
-    // Called a fixed amount of times per second - Use for physics and rigidbodies!
     void FixedUpdate() {
         rb.velocity = moveVector * moveSpeed;
     }
