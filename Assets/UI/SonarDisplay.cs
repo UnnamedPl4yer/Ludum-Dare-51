@@ -19,7 +19,7 @@ public class SonarDisplay : MonoBehaviour
     void Update() {
         Vector3 distance = (monsterTransform.position - playerTransform.position);
         Vector3 direction = distance.normalized;
-        sonarDot.transform.position = transform.position + (ClampVector(distance, -20.0f, 20.0f) / 20) * sonarSize.x / 2;
+        sonarDot.transform.position = transform.position + (ClampVector(distance, -10.0f, 10.0f) / 20) * sonarSize.x / 2;
         // Debug.Log(sonarDot.transform.localScale);
         float scale = Clamp(20 / distance.magnitude, 1.0f, 2.0f);
         sonarDot.transform.localScale = new Vector3(

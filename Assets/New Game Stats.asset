@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: New Game Stats
   m_EditorClassIdentifier: 
   completedLevels: 0000000000
+  collectibles: 
