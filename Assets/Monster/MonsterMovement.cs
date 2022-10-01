@@ -12,7 +12,7 @@ public class MonsterMovement : MonoBehaviour
 
     // Far tracking
     [SerializeField] private PlayerAir playerAirComponent;
-    [SerializeField] private PlayerAir playerStealthComponent;
+    [SerializeField] private PlayerStealth playerStealthComponent;
     [SerializeField] private Vector3 targetingInaccuracyRange;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float sleepTime; // seconds
