@@ -42,7 +42,7 @@ public class PlayerAir : MonoBehaviour
     // Decrease air if player presses key and is not choking
     // Increase speed of loss while walking or running
     private void DecreaseAir() {
-        float moveMultiplier = Mathf.Abs(rb.velocity.x) >= 0.1f || Mathf.Abs(rb.velocity.y) >= 0.1f ? airMoveMultiplier : 1;
+        float moveMultiplier = rb.velocity.magnitude > 0.1f ? airMoveMultiplier : 1;
         Debug.Log(moveMultiplier);
         currentAir -= (airDecreaseRate * moveMultiplier * Time.deltaTime);
         if (currentAir <= 0) {

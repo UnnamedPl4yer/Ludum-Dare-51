@@ -12,6 +12,7 @@ public class MonsterMovement : MonoBehaviour
 
     // Far tracking
     [SerializeField] private PlayerAir playerAirComponent;
+    [SerializeField] private PlayerAir playerStealthComponent;
     [SerializeField] private Vector3 targetingInaccuracyRange;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float sleepTime; // seconds
@@ -83,15 +84,17 @@ public class MonsterMovement : MonoBehaviour
     Vector3 GetDestinationNearPlayer() {
         // Radius around player
         float breathMultiplier = playerAirComponent.currentBreathMultiplier;
+        float stealthMultiplier = playerStealthComponent.currentHidingMultiplier;
+
         Vector3 targetingInaccuracy = new Vector3(
             Random.Range(-targetingInaccuracyRange.x, targetingInaccuracyRange.x),
             Random.Range(-targetingInaccuracyRange.y, targetingInaccuracyRange.y),
             0
         );
         // GraphNode near chosen random location
-        GraphNode node = AstarPath.active.GetNearest(playerTransform.position + targetingInaccuracy * breathMultiplier).node;
+        GraphNode node = AstarPath.active.GetNearest(playerTransform.position + targetingInaccuracy * breathMultiplier * stealthMultiplier).node;
         while (!node.Walkable) {
-            node = AstarPath.active.GetNearest(playerTransform.position + targetingInaccuracy * breathMultiplier).node;
+            node = AstarPath.active.GetNearest(playerTransform.position + targetingInaccuracy * breathMultiplier * stealthMultiplier).node;
         } 
         return (Vector3)(node.position);
     }
