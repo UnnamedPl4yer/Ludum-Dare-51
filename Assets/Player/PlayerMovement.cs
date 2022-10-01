@@ -16,7 +16,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update() {
+        if (Input.GetMouseButton(1)) {
+            // animator.SetBool("igniting", true);    
+            return;
+        }
         GetMovement();
+        // animator.SetBool("igniting", false);
         animator.SetBool("moving", moveVector.magnitude > 0.0f);
         if (moveVector.x > 0.0f) {
             transform.localScale = new Vector2( -1, transform.localScale.y);
