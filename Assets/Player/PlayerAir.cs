@@ -20,10 +20,14 @@ public class PlayerAir : MonoBehaviour
     [SerializeField] private bool isChoking = false;
     [SerializeField] private bool isHoldingBreath = false;
 
+    // UI
+    public AirMeterController airMeterController;
+
     // Called only once after GameObject initialization
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         currentAir = maxAir;
+        airMeterController.maxAir = maxAir;
     }
 
     // Update is called once per frame
@@ -37,6 +41,7 @@ public class PlayerAir : MonoBehaviour
             isHoldingBreath = false;
             currentBreathMultiplier = isChoking ? targetingInaccuracyWhileChoking : 1.0f;
         }
+        airMeterController.remainingAir = currentAir;
     }
 
     // Decrease air if player presses key and is not choking

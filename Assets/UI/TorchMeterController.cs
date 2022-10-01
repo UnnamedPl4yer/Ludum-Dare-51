@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TimerDisplay : MonoBehaviour
+public class TorchMeterController : MonoBehaviour
 {
     public float maxTime;
     private float remainingTime;
@@ -13,29 +13,30 @@ public class TimerDisplay : MonoBehaviour
     private RectTransform timerBarTransform;
     private Vector2 originalSize;
 
+    public float rechargeProgress;
+    public Image rechargeProgressIndicator;
+
     void Start() {
         timerBarTransform = timerBar.GetComponent<RectTransform>();
         originalSize = timerBarTransform.sizeDelta;
     }
 
     void Update() {
-        if (timeRunning)
-            DecreaseTime();
-    }
+        rechargeProgressIndicator.fillAmount = rechargeProgress;
+        if (!timeRunning) return;
 
-    void DecreaseTime() {
         if (remainingTime > 0.0f) {
             remainingTime -= Time.deltaTime;
-            LeanTween.scaleX(timerBar, (remainingTime / maxTime), Time.deltaTime);
+            LeanTween.scaleY(timerBar, (remainingTime / maxTime), Time.deltaTime);
             return;
         }
         timeRunning = false;
         timerBarTransform.sizeDelta = originalSize;
     }
 
-    public void StartTimer(float monsterTime) {
-        maxTime = monsterTime;
-        remainingTime = monsterTime;
+    public void StartTimer(float torchTime) {
+        maxTime = torchTime;
+        remainingTime = torchTime;
         timeRunning = true;
     }
 }

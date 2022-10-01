@@ -23,7 +23,7 @@ public class MonsterMovement : MonoBehaviour
     [SerializeField] private bool isHunting = false;
 
     // UI
-    [SerializeField] private TimerDisplay td;
+    public MonsterMeterController monsterMeterController;
 
     // Start ist called once
     void Start() {
@@ -87,7 +87,7 @@ public class MonsterMovement : MonoBehaviour
     }
 
     IEnumerator WaitUntilCanMove() {
-        td.StartTimer(sleepTime);
+        monsterMeterController.StartTimer(sleepTime);
         yield return new WaitForSeconds(sleepTime);
         canMove = true;
         aiPath.destination = GetDestinationNearPlayer();
