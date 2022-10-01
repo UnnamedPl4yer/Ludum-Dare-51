@@ -3,20 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class MonsterController : MonoBehaviour
+public class MonsterMovement : MonoBehaviour
  {
     public Transform playerTransform;
     public Rigidbody2D rb;
     public AIPath aiPath;
     private GridGraph aiGrid;
 
+    // Far tracking
     [SerializeField] private PlayerAir playerAirComponent;
     [SerializeField] private Vector3 targetingInaccuracyRange;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float sleepTime; // seconds
     [SerializeField] private bool canMove = false;
-    private float timeSinceCanMove = 0;
-    private bool emergencyStop = false;
+    
+    // Near tracking
+    [SerializeField] private bool isHunting = false;
+
+    // UI
+    [SerializeField] private TimerDisplay td;
 
     // Start ist called once
     void Start() {
@@ -28,26 +33,29 @@ public class MonsterController : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        MoveAI();
-        // AI is stuck somewhere
-        // if (new Vector2(rb.velocity.x, rb.velocity.y).magnitude <= 0.01f && !aiPath.reachedDestination && timeSinceCanMove > 1.0f) {
-        //     emergencyStop = true;
-        //     Debug.Log("EMERGENCY STOP!");
-        // }
+        if (!isHunting) {
+            StalkPlayer();
+        } else {
+            HuntPlayer();
+        }
     }
 
-    void MoveAI() {
+    void StalkPlayer() {
         aiPath.canMove = canMove;
         if (!canMove) return;
-        timeSinceCanMove += Time.deltaTime;
 
         // Debug.Log("Distance to player: " + aiPath.remainingDistance);
         aiPath.Move(aiPath.desiredVelocity.normalized * moveSpeed * Time.deltaTime);
-        if (aiPath.reachedDestination || emergencyStop) {
+        if (aiPath.reachedDestination) {
             canMove = false;
-            emergencyStop = false;
             StartCoroutine(WaitUntilCanMove());
         }
+    }
+
+    void HuntPlayer() {
+        aiPath.canMove = isHunting;
+        aiPath.destination = playerTransform.position;
+        aiPath.Move(aiPath.desiredVelocity.normalized * moveSpeed * Time.deltaTime);
     }
 
     // Debug stuff for visualization
@@ -66,13 +74,13 @@ public class MonsterController : MonoBehaviour
     }
 
     IEnumerator WaitUntilCanMove() {
+        td.StartTimer(sleepTime);
         yield return new WaitForSeconds(sleepTime);
         canMove = true;
-        timeSinceCanMove = 0;
-        aiPath.destination = GetDestination();
+        aiPath.destination = GetDestinationNearPlayer();
     }
 
-    Vector3 GetDestination() {
+    Vector3 GetDestinationNearPlayer() {
         // Radius around player
         float breathMultiplier = playerAirComponent.currentBreathMultiplier;
         Vector3 targetingInaccuracy = new Vector3(
@@ -86,5 +94,23 @@ public class MonsterController : MonoBehaviour
             node = AstarPath.active.GetNearest(playerTransform.position + targetingInaccuracy * breathMultiplier).node;
         } 
         return (Vector3)(node.position);
+    }
+
+    // Player located - start the hunt
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col.gameObject.tag == "Player") isHunting = true;
+    }
+
+    // Player too far away - stop the hunt
+    void OnTriggerExit2D(Collider2D col) {
+        if (col.gameObject.tag == "Player") isHunting = false;
+    }
+
+    // Stop movement when player is caught
+    void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.tag == "Player") {
+            moveSpeed = 0.0f;
+            aiPath.maxSpeed = 0.0f;
+        }
     }
 }
