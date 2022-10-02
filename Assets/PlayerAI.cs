@@ -18,7 +18,7 @@ public class PlayerAI : MonoBehaviour
         aiGrid = AstarPath.active.data.gridGraph;
         Debug.Log(aiGrid.nodes.Length);
         animator = GetComponent<Animator>();
-        aiPath.destination = (Vector3)(aiGrid.nodes[(int)(Random.Range(0, aiGrid.nodes.Length - 1))].position);
+        GetNewDestination();
     }
 
     void Update() {
@@ -34,8 +34,18 @@ public class PlayerAI : MonoBehaviour
             }
             return;
         }
+        StartCoroutine(WaitBeforeNewDestination());
+    }
+    
+    
+    void GetNewDestination() {
         int random = Random.Range(0, aiGrid.nodes.Length - 1);
         GraphNode node = aiGrid.nodes[random];
         aiPath.destination = (Vector3)(node.position);
+    }
+
+    IEnumerator WaitBeforeNewDestination() {
+        yield return new WaitForSeconds( Random.Range(0f, 2f) );
+        GetNewDestination();
     }
 }
