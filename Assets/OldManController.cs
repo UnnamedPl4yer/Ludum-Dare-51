@@ -14,8 +14,8 @@ public class OldManController : MonoBehaviour
 
     void Start() {
         // Debug! Take out before build!
-        // gameStats.lastOldManDialogue = -1;
-        // gameStats.nextOldManDialogue = 0;
+        gameStats.lastOldManDialogue = -1;
+        gameStats.nextOldManDialogue = 0;
         // End debug
 
         dialogueScript = GetComponent<DialogueScript>();
