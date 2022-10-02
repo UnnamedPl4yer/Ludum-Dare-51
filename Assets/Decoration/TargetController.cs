@@ -11,7 +11,8 @@ public class TargetController : MonoBehaviour
     public void Teleport() {
         gameStats.collectibles[myObjective] = true;
         gameStats.completedLevels[myObjective] = true;
-        sceneManager.LoadHubScene();
+        gameObject.SetActive(false);
+        // sceneManager.LoadHubScene();
     }
 
     // public void OnTriggerEnter2D(Collider2D col) {

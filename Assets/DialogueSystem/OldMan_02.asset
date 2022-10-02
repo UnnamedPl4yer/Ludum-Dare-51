@@ -17,11 +17,20 @@ MonoBehaviour:
   - Ah, you have found me. Someone at last.
   - Listen, don't be afraid. There is a way to get out of this situation. #See it
     as a test.
-  - There are five portals scattered around which only I can control.
-  - In order to escape I want you to bring me 5 things I lost a long time ago.
+  - There are portals nearby which only I can control.
+  - In order to go on with your usual life, I want you to bring me [HOW MANY COLLECTIBLES??]
+    things I lost a some time ago.
   - Unfortunately, I am too old. Hence, I must rely on you.
-  - Sounds easy doesn't it? I have unlocked the first portal for you.
-  - You can find it to your left.
-  - Please find the potion I lost long ago that will help against my illness.
+  - Sounds easy doesn't it? I have unlocked a portal for you. You can find it left
+    from here.
+  - But be careful...# We are not alone in these woods. There is a monster nearby!
+  - However, it is only able to track you every 10 seconds. So if you see it coming,
+    you have some time to get away from it.
+  - Just don't end up in a dead end or else you're dead meat.
+  - After you have collected all [AMOUNT] objects, a portal back to here will open
+    in the forest.
+  - Also, your torch will decrease in intensity every ten seconds.
+  - But you can reignite it by holding the right mouse button.
+  - Good Luck!
   typingSpeed: 15
-  typingSound: {fileID: 0}
+  typingSound: {fileID: 8300000, guid: 8a6dad7d708abe04ca93bb3046fa9e8f, type: 3}

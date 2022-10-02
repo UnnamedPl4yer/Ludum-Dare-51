@@ -10,9 +10,11 @@ public class DialogueScript : MonoBehaviour
     [SerializeField] private GameObject dialogueParent;
     private Dialogue dialogue;
     private int index;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start() {
+        audioSource = GetComponent<AudioSource>();
         dialogueParent.SetActive(false);
         // speakerElement.text = string.Empty;
         // textElement.text = string.Empty;
@@ -34,7 +36,11 @@ public class DialogueScript : MonoBehaviour
         dialogue = dialogueToSpeak;
         index = 0;
         dialogueParent.SetActive(true);
-        speakerElement.text = string.Empty;
+        if (dialogue.speaker == "") {
+            speakerElement.gameObject.SetActive(false);
+        } else {
+            speakerElement.text = string.Empty;
+        }
         textElement.text = string.Empty;
 
         StartCoroutine(TypeLine());
@@ -43,7 +49,11 @@ public class DialogueScript : MonoBehaviour
     void NextLine() {
         if (index < dialogue.lines.Length - 1) {
             index++;
-            speakerElement.text = dialogue.speaker;
+            if (dialogue.speaker == "") {
+                speakerElement.gameObject.SetActive(false);
+            } else {
+                speakerElement.text = dialogue.speaker;
+            }
             textElement.text = string.Empty;
             StartCoroutine(TypeLine());
         } else {
@@ -52,14 +62,26 @@ public class DialogueScript : MonoBehaviour
     }
 
     IEnumerator TypeLine() {
-        speakerElement.text = dialogue.speaker;
+        if (dialogue.speaker == "") {
+            speakerElement.gameObject.SetActive(false);
+        } else {
+            speakerElement.text = dialogue.speaker;
+        }
         foreach (char c in dialogue.lines[index].ToCharArray()) {
             if (c == '#') {
                 yield return new WaitForSeconds(2.0f);
                 continue;
             }
             textElement.text += c;
+            StartCoroutine(PlayAudio());
             yield return new WaitForSeconds(1 / dialogue.typingSpeed);
         }
+    }
+
+    IEnumerator PlayAudio() {
+        audioSource.clip = dialogue.typingSound;
+        audioSource.volume = 0.2f;
+        audioSource.Play();
+        yield return null;
     }
 }

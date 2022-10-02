@@ -58,9 +58,9 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector2(Mathf.Abs(localScaleX), transform.localScale.y);
         }
         if (transform.localScale.x < 0) {
-            interactInfo.transform.localScale = new Vector3(-0.5f, 0.5f, 0f);
+            interactInfo.transform.localScale = new Vector3(-0.5f, 0.5f, -0.5f);
         } else {
-            interactInfo.transform.localScale = new Vector3(0.5f, 0.5f, 0f);
+            interactInfo.transform.localScale = new Vector3(0.5f, 0.5f, -0.5f);
         }
     }
 

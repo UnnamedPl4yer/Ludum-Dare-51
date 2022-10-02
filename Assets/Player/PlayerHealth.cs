@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    void GameOver() {
-        Debug.Log("TODO: GameOver!");
-    }
-
     void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag == "Monster") 
-            GameOver();
+            StartCoroutine(WaitGameOver());
+    }
+
+    IEnumerator WaitGameOver() {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("GamerOverScene");
     }
 }

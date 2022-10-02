@@ -27,32 +27,38 @@ public class OldManController : MonoBehaviour
         dialogueScript.StartDialogue(dialogues[gameStats.nextOldManDialogue]);
         gameStats.lastOldManDialogue = gameStats.nextOldManDialogue;
         gameStats.nextOldManDialogue += 1;
-        gameStats.collectibles[0] = true;
+        // gameStats.collectibles[0] = true;
     }
 
-    void Update() {
-        // if (playerWantsToSpeak && Input.GetKeyDown(KeyCode.F)) {
-        //     SpeakNextDialogue();
-        // }
-    }
+    // void Update() {
+    //     if (playerWantsToSpeak && Input.GetKeyDown(KeyCode.F)) {
+    //         SpeakNextDialogue();
+    //     }
+    // }
 
-    void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.tag != "Player") return;
-        playerWantsToSpeak = true;
-    }
+    // void OnTriggerEnter2D(Collider2D col) {
+    //     if (col.gameObject.tag != "Player") return;
+    //     playerWantsToSpeak = true;
+    // }
 
-    void OnTriggerExit2D(Collider2D col) {
-        if (col.gameObject.tag != "Player") return;
-        playerWantsToSpeak = false;
-    }
+    // void OnTriggerExit2D(Collider2D col) {
+    //     if (col.gameObject.tag != "Player") return;
+    //     playerWantsToSpeak = false;
+    // }
 
     public void SpeakNextDialogue() {
         dialogueScript.StartDialogue(dialogues[gameStats.nextOldManDialogue]);
         gameStats.lastOldManDialogue = gameStats.nextOldManDialogue;
-        for (int i = 0; i < gameStats.collectibles.Length; i++) {
-            if (gameStats.collectibles[i]) {
-                hubManager.UnlockPortal(i);
-            }
+        if (!gameStats.collectibles[gameStats.collectibles.Length - 1]) {
+            // not all collected
+            hubManager.UnlockPortal(0);
+            return;
         }
+        
+        // for (int i = 0; i < gameStats.collectibles.Length; i++) {
+        //     if (gameStats.collectibles[i]) {
+        //         hubManager.UnlockPortal(i);
+        //     }
+        // }
     }
 }
