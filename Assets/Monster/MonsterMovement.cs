@@ -38,10 +38,11 @@ public class MonsterMovement : MonoBehaviour
     void Update() {
         // Animations
         animator.SetBool("moving", aiPath.desiredVelocity.magnitude > 0.0f);
+        float localScaleX = transform.localScale.x;
         if (aiPath.desiredVelocity.x > 0.0f) {
-            transform.localScale = new Vector2( -1, transform.localScale.y);
+            transform.localScale = new Vector2( -1 * Mathf.Abs(localScaleX), transform.localScale.y);
         } else {
-            transform.localScale = new Vector2(1, transform.localScale.y);
+            transform.localScale = new Vector2(Mathf.Abs(localScaleX), transform.localScale.y);
         }
         // Actual movement
         if (!isHunting) {
