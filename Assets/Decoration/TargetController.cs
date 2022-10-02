@@ -11,7 +11,7 @@ public class TargetController : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Player") {
             gameStats.collectibles[myObjective] = true;
-            // gameStats.completedLevels[myObjective] = true;
+            gameStats.completedLevels[myObjective] = true;
             sceneManager.LoadHubScene();
         }
     }
