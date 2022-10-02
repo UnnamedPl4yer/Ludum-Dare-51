@@ -31,9 +31,9 @@ public class OldManController : MonoBehaviour
     }
 
     void Update() {
-        if (playerWantsToSpeak && Input.GetKeyDown(KeyCode.F)) {
-            SpeakNextDialogue();
-        }
+        // if (playerWantsToSpeak && Input.GetKeyDown(KeyCode.F)) {
+        //     SpeakNextDialogue();
+        // }
     }
 
     void OnTriggerEnter2D(Collider2D col) {
@@ -46,7 +46,7 @@ public class OldManController : MonoBehaviour
         playerWantsToSpeak = false;
     }
 
-    void SpeakNextDialogue() {
+    public void SpeakNextDialogue() {
         dialogueScript.StartDialogue(dialogues[gameStats.nextOldManDialogue]);
         gameStats.lastOldManDialogue = gameStats.nextOldManDialogue;
         for (int i = 0; i < gameStats.collectibles.Length; i++) {
