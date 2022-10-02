@@ -8,14 +8,14 @@ public class DialogueScript : MonoBehaviour
     public TextMeshProUGUI speakerElement;
     public TextMeshProUGUI textElement;
     [SerializeField] private GameObject dialogueParent;
-    public Dialogue dialogue;
+    private Dialogue dialogue;
     private int index;
 
     // Start is called before the first frame update
     void Start() {
-        speakerElement.text = string.Empty;
-        textElement.text = string.Empty;
-        StartDialogue();
+        dialogueParent.SetActive(false);
+        // speakerElement.text = string.Empty;
+        // textElement.text = string.Empty;
         // Debug.Log(dialogue.lines);
     }
 
@@ -30,8 +30,13 @@ public class DialogueScript : MonoBehaviour
         }
     }
 
-    void StartDialogue() {
+    public void StartDialogue(Dialogue dialogueToSpeak) {
+        dialogue = dialogueToSpeak;
         index = 0;
+        dialogueParent.SetActive(true);
+        speakerElement.text = string.Empty;
+        textElement.text = string.Empty;
+
         StartCoroutine(TypeLine());
     }
 

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GlobalSceneManager : MonoBehaviour
 {
     public void LoadHubScene() {
+        Debug.Log("Loading Hub");
         SceneManager.LoadScene("HubScene");
     }
 

@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 72c6961e2e42ad644ad8e06cb6cb39e3, type: 2}
+  gameStats: {fileID: 11400000, guid: 8790c23c74d83bb40b718a276cf692ad, type: 2}
   musicVolume: 0
   musicVolumeSlider: {fileID: 938534152}
   sfxVolume: 0

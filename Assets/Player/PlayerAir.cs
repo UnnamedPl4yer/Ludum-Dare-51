@@ -49,7 +49,6 @@ public class PlayerAir : MonoBehaviour
     // Increase speed of loss while walking or running
     private void DecreaseAir() {
         float moveMultiplier = rb.velocity.magnitude > 0.1f ? airMoveMultiplier : 1;
-        Debug.Log(moveMultiplier);
         currentAir -= (airDecreaseRate * moveMultiplier * Time.deltaTime);
         if (currentAir <= 0) {
             currentAir = 0;

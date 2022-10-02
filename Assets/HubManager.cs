@@ -5,25 +5,26 @@ using UnityEngine;
 public class HubManager : MonoBehaviour
 {
     public GameStats gameStats;
-    public GameObject[] portals; // GameObjects to block 
-
+    public GameObject[] portals;
+    public int waitTime;
 
     void Start() {
-        for (int i = 1; i < portals.Length - 1; i++) {
-            if (gameStats.completedLevels[i - 1]) {
-                portals[i].SetActive(true);
-            } else {
-                portals[i].SetActive(false);
-            }
+        for (int i = 0; i < portals.Length; i++) {
+            portals[i].SetActive(false); 
         }
     }
 
-    public void UnlockPortal(int i) {
-        portals[i].SetActive(true);
+    public void UnlockPortal(int portalIndex) {
+        StartCoroutine(UnlockPortalCoroutine(portalIndex));
     }
 
-    void UnlockFirstWorld() {
+    public void UnlockFirstWorld() {
         gameStats.completedLevels[0] = true;
         UnlockPortal(0);
+    }
+
+    IEnumerator UnlockPortalCoroutine(int portalIndex) {
+        yield return new WaitForSeconds(waitTime);
+        portals[portalIndex].SetActive(true);
     }
 }

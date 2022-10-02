@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
+    private bool lastMovedRight = false;
+
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -25,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         // animator.SetBool("igniting", false);
         animator.SetBool("moving", moveVector.magnitude > 0.0f);
         float localScaleX = transform.localScale.x;
-        if (moveVector.x > 0.0f) {
+        if (moveVector.x > 0.0f || lastMovedRight) {
             transform.localScale = new Vector2( -1 * Mathf.Abs(localScaleX), transform.localScale.y);
         } else {
             transform.localScale = new Vector2(Mathf.Abs(localScaleX), transform.localScale.y);
@@ -45,5 +47,7 @@ public class PlayerMovement : MonoBehaviour
             Input.GetAxisRaw("Horizontal"),
             Input.GetAxisRaw("Vertical")
         ).normalized;
+        if (moveVector.x > 0) lastMovedRight = true;
+        if (moveVector.x < 0) lastMovedRight = false;
     }
 }

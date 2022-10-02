@@ -8,6 +8,7 @@ using TMPro;
 public class MainMenuController : MonoBehaviour
 {
     public GameSettings settings;
+    public GameStats gameStats;
 
     public float musicVolume;
     public Slider musicVolumeSlider;
@@ -26,6 +27,13 @@ public class MainMenuController : MonoBehaviour
     }
 
     public void StartGame() {
+        // Reset progress
+        for (int i = 0; i < gameStats.completedLevels.Length; i++) {
+            gameStats.completedLevels[i] = false;
+        }
+        gameStats.lastOldManDialogue = -1;
+        gameStats.nextOldManDialogue = 0;
+        // End reset
         greyOutImage.gameObject.SetActive(true);
         StartCoroutine(FadeImageIn());        
     }

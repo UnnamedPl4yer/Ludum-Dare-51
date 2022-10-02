@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd25da27437cb04589a2b0c51af46f5, type: 3}
-  m_Name: GameStats
+  m_Script: {fileID: 11500000, guid: a8de87e3a0732e240a3dcbe822f58213, type: 3}
+  m_Name: OldMan_Item4
   m_EditorClassIdentifier: 
-  completedLevels: 0000000000
-  collectibles: 0000000000
-  lastOldManDialogue: 1
-  nextOldManDialogue: 1
+  speaker: 
+  lines: []
+  typingSpeed: 0
+  typingSound: {fileID: 0}
