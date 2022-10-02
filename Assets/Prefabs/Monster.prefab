@@ -139,7 +139,7 @@ MonoBehaviour:
   playerStealthComponent: {fileID: 0}
   targetingInaccuracyRange: {x: 5, y: 5, z: 0}
   moveSpeed: 2
-  sleepTime: 3
+  sleepTime: 10
   canMove: 0
   isHunting: 0
   monsterMeterController: {fileID: 0}

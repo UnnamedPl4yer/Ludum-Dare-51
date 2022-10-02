@@ -9,6 +9,10 @@ public class TorchMeterController : MonoBehaviour
     private float remainingTime;
     private bool timeRunning = false;
 
+    [SerializeField] private Image torchStatusIcon;
+    [SerializeField] private Sprite[] torchLevelIcons;
+    public int index;
+
     [SerializeField] private GameObject timerBar;
     private RectTransform timerBarTransform;
     private Vector2 originalSize;
@@ -23,6 +27,7 @@ public class TorchMeterController : MonoBehaviour
 
     void Update() {
         rechargeProgressIndicator.fillAmount = rechargeProgress;
+        UpdateIcon();
         if (!timeRunning) return;
 
         if (remainingTime > 0.0f) {
@@ -38,5 +43,9 @@ public class TorchMeterController : MonoBehaviour
         maxTime = torchTime;
         remainingTime = torchTime;
         timeRunning = true;
+    }
+
+    void UpdateIcon() {
+        torchStatusIcon.sprite = torchLevelIcons[index];
     }
 }
