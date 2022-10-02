@@ -40,10 +40,11 @@ public class Flicker2 : MonoBehaviour
         StartCoroutine(WaitUntilNextStage());
     }
 
-    void Update()
-    {
+    void Update() {
         if (light == null)
             return;
+
+        torchMeterController.index = currentLevel;
 
         if (Input.GetMouseButton(1)) { // Hold right mouse button to reignite
             timeHeldToReignite += Time.deltaTime;
@@ -52,6 +53,8 @@ public class Flicker2 : MonoBehaviour
                 currentLevel -= 1;
                 currentLevel = Mathf.Clamp(currentLevel, 0, intensitySteps.Length-1);
                 timeHeldToReignite = 0f;
+                StopAllCoroutines();
+                StartCoroutine(WaitUntilNextStage());
                 torchMeterController.StartTimer(10f);
             }
         } else {

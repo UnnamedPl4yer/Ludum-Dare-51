@@ -11,13 +11,22 @@ public class MainMenuController : MonoBehaviour
 
     public float musicVolume;
     public Slider musicVolumeSlider;
+
     public float sfxVolume;
     public Slider sfxVolumeSlider;
+
     public int difficulty;
     public TMP_Dropdown difficultySelect;
 
+    public Image greyOutImage;
+
     public void StartGame() {
-        SceneManager.LoadScene("TutorialScene");
+        float t = 0;
+        while(t < 2.0f) {
+            t += Time.deltaTime;
+            greyOutImage.color = new Color(greyOutImage.color.r, greyOutImage.color.g, greyOutImage.color.b, (t / 2) * 255);
+        }
+        SceneManager.LoadScene("LoadingScene");
     }
 
     public void UpdateSettings() {
