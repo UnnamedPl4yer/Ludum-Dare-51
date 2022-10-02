@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Monster
   - Bullet
+  - Interactable
+  - Portal
+  - Target
+  - NPC
   layers:
   - Default
   - TransparentFX

@@ -8,11 +8,17 @@ public class TargetController : MonoBehaviour
     public GameStats gameStats;
     public int myObjective;
 
-    public void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.tag == "Player") {
-            gameStats.collectibles[myObjective] = true;
-            gameStats.completedLevels[myObjective] = true;
-            sceneManager.LoadHubScene();
-        }
+    public void Teleport() {
+        gameStats.collectibles[myObjective] = true;
+        gameStats.completedLevels[myObjective] = true;
+        sceneManager.LoadHubScene();
     }
+
+    // public void OnTriggerEnter2D(Collider2D col) {
+    //     if (col.gameObject.tag == "Player") {
+    //         gameStats.collectibles[myObjective] = true;
+    //         gameStats.completedLevels[myObjective] = true;
+    //         sceneManager.LoadHubScene();
+    //     }
+    // }
 }

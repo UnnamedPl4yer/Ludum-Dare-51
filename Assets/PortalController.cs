@@ -25,6 +25,10 @@ public class PortalController : MonoBehaviour
         // randomStart += Time.deltaTime;
     }
 
+    public void Teleport() {
+        globalSceneManager.LoadSceneByName(worldToLoad);
+    }
+
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Player") {
             // Debug.Log("Load World " + worldToLoad);
