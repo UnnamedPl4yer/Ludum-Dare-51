@@ -4887,9 +4887,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light: {fileID: 3195395365997672389}
+  outerLight: {fileID: 0}
   minIntensity: 0
   maxIntensity: 1
+  currentLevel: 0
+  intensitySteps:
+  - 1
+  - 0.67
+  - 0.33
+  - 0
+  torchLevelFluctuations: 0.1
+  timeHeldToReignite: 0
+  timeNeededToReignite: 2
   smoothing: 10
+  torchMeterController: {fileID: 0}
 --- !u!1 &3195395365997672410
 GameObject:
   m_ObjectHideFlags: 0
@@ -5063,7 +5074,7 @@ MonoBehaviour:
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
   m_ShadowIntensityEnabled: 1
-  m_ShadowIntensity: 0.095
+  m_ShadowIntensity: 0.15
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_Vertices:
