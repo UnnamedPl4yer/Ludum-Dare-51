@@ -10,11 +10,14 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
+    private PlayerAudioController audioController;
+
     private bool lastMovedRight = false;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioController = GetComponent<PlayerAudioController>();
     }
 
     void Update() {
@@ -24,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         GetMovement();
+        if (moveVector.magnitude >= 0.1f) {
+            audioController.PlayStepSound();
+        }
         // animator.SetBool("igniting", false);
         animator.SetBool("moving", moveVector.magnitude > 0.0f);
         float localScaleX = transform.localScale.x;

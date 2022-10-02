@@ -8,7 +8,9 @@ public class OldManController : MonoBehaviour
     [SerializeField] Dialogue[] dialogues;
     private DialogueScript dialogueScript;
     private bool playerWantsToSpeak = false;
+    private bool isSpeaking = false;
     private HubManager hubManager;
+
 
     void Start() {
         // Debug! Take out before build!

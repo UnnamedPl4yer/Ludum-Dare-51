@@ -26262,6 +26262,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3325584439274435723, guid: b6066b1f70641784eb797cb8bd7eedb3, type: 3}
+      propertyPath: stepSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 621b325b2a5ff184a865ca20daf6d56e, type: 3}
     - target: {fileID: 8397036643215369960, guid: b6066b1f70641784eb797cb8bd7eedb3, type: 3}
       propertyPath: m_Name
       value: Player
@@ -26308,6 +26312,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8397036643215369963, guid: b6066b1f70641784eb797cb8bd7eedb3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8397036643215369965, guid: b6066b1f70641784eb797cb8bd7eedb3, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8397036643215369966, guid: b6066b1f70641784eb797cb8bd7eedb3, type: 3}
