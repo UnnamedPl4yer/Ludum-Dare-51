@@ -28,6 +28,7 @@ public class PlayerAir : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentAir = maxAir;
         airMeterController.maxAir = maxAir;
+        airMeterController.chokingThreshold = chokingThreshold;
     }
 
     // Update is called once per frame

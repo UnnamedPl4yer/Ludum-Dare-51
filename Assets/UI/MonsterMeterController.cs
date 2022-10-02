@@ -9,6 +9,10 @@ public class MonsterMeterController : MonoBehaviour
     private float remainingTime;
     private bool timeRunning = false;
 
+    [SerializeField] private Image monsterStateIcon;
+    [SerializeField] private Sprite monsterWatchingIcon;
+    [SerializeField] private Sprite monsterWaitingIcon;
+
     [SerializeField] private GameObject timerBar;
     private RectTransform timerBarTransform;
     private Vector2 originalSize;
@@ -19,8 +23,9 @@ public class MonsterMeterController : MonoBehaviour
     }
 
     void Update() {
+        UpdateIcon();
         if (!timeRunning) return;
-
+        
         if (remainingTime > 0.0f) {
             remainingTime -= Time.deltaTime;
             Vector3 oldPos = transform.position;
@@ -36,5 +41,13 @@ public class MonsterMeterController : MonoBehaviour
         maxTime = givenMaxTime;
         remainingTime = givenMaxTime;
         timeRunning = true;
+    }
+
+    void UpdateIcon() {
+        if (timeRunning) {
+            monsterStateIcon.sprite = monsterWaitingIcon;
+            return;
+        }
+        monsterStateIcon.sprite = 
     }
 }
