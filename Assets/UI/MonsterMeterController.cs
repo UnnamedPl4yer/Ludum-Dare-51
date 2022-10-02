@@ -48,6 +48,6 @@ public class MonsterMeterController : MonoBehaviour
             monsterStateIcon.sprite = monsterWaitingIcon;
             return;
         }
-        monsterStateIcon.sprite = 
+        monsterStateIcon.sprite = monsterWatchingIcon;
     }
 }
