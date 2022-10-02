@@ -18,13 +18,22 @@ public class MainMenuController : MonoBehaviour
     public int difficulty;
     public TMP_Dropdown difficultySelect;
 
+    private float fadeInTime = 2f;
     public Image greyOutImage;
 
+    void Start() {
+        greyOutImage.gameObject.SetActive(false);
+    }
+
     public void StartGame() {
-        float t = 0;
-        while(t < 2.0f) {
-            t += Time.deltaTime;
-            greyOutImage.color = new Color(greyOutImage.color.r, greyOutImage.color.g, greyOutImage.color.b, (t / 2) * 255);
+        greyOutImage.gameObject.SetActive(true);
+        StartCoroutine(FadeImageIn());        
+    }
+
+    IEnumerator FadeImageIn() {
+        for (float i = 0f; i < 1f; i += (Time.deltaTime / fadeInTime)) {
+            greyOutImage.color = new Color(0, 0, 0, i);
+            yield return null;
         }
         SceneManager.LoadScene("LoadingScene");
     }
