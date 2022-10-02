@@ -105,9 +105,9 @@ public class MonsterMovement : MonoBehaviour
             0
         );
         // GraphNode near chosen random location
-        GraphNode node = AstarPath.active.GetNearest(playerTransform.position + targetingInaccuracy * breathMultiplier * stealthMultiplier).node;
+        GraphNode node = AstarPath.active.GetNearest(playerTransform.position + targetingInaccuracy).node; // * breathMultiplier * stealthMultiplier).node;
         while (!node.Walkable) {
-            node = AstarPath.active.GetNearest(playerTransform.position + targetingInaccuracy * breathMultiplier * stealthMultiplier).node;
+            node = AstarPath.active.GetNearest(playerTransform.position + targetingInaccuracy).node; // * breathMultiplier * stealthMultiplier).node;
         } 
         return (Vector3)(node.position);
     }

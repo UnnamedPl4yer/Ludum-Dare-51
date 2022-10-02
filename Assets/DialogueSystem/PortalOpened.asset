@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd25da27437cb04589a2b0c51af46f5, type: 3}
-  m_Name: GameStats
+  m_Script: {fileID: 11500000, guid: a8de87e3a0732e240a3dcbe822f58213, type: 3}
+  m_Name: PortalOpened
   m_EditorClassIdentifier: 
-  completedLevels: 0000000000
-  collectibles: 0000000000
-  lastOldManDialogue: -1
-  nextOldManDialogue: 0
+  speaker: 
+  lines:
+  - A portal has opened somewhere!
+  typingSpeed: 20
+  typingSound: {fileID: 8300000, guid: 8a6dad7d708abe04ca93bb3046fa9e8f, type: 3}

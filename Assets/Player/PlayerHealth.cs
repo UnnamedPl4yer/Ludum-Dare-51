@@ -7,11 +7,11 @@ public class PlayerHealth : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag == "Monster") 
-            StartCoroutine(WaitGameOver());
+            SceneManager.LoadScene("GameOverScene");
+            // StartCoroutine(WaitGameOver());
     }
 
     IEnumerator WaitGameOver() {
-        yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("GamerOverScene");
+        yield return new WaitForSeconds(0.5f);
     }
 }

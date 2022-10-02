@@ -8,12 +8,16 @@ public class Scene01Controller : MonoBehaviour
     public GameStats gameStats;
     public DialogueScript dialogueScript;
     public Dialogue portalOpenedDialogue;
+    private bool dialogueStarted = false;
 
     void Update() {
         foreach (bool collectible in gameStats.collectibles) {
             if (!collectible) return;
         }
         portal.SetActive(true);
-        dialogueScript.StartDialogue(portalOpenedDialogue);
+        if (!dialogueStarted){
+            dialogueScript.StartDialogue(portalOpenedDialogue);
+            dialogueStarted = true;
+        }
     }
 }
