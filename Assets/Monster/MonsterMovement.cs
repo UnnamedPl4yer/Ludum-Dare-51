@@ -40,6 +40,10 @@ public class MonsterMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        // Out of bounds fix
+        if (transform.position.x < -37f || transform.position.x > 25f || transform.position.y < -21f || transform.position.y > 30f) {
+            transform.position = new Vector3(-33f, 25f, 0f); // Reset to original spawn
+        }
         // Animations
         animator.SetBool("moving", aiPath.desiredVelocity.magnitude > 0.0f);
         float localScaleX = transform.localScale.x;

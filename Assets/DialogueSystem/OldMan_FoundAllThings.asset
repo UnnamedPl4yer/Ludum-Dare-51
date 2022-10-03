@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8de87e3a0732e240a3dcbe822f58213, type: 3}
   m_Name: OldMan_FoundAllThings
   m_EditorClassIdentifier: 
-  speaker: 
+  speaker: Old Man
   lines:
   - Ah, #you're back. I'm glad to see you alive.
   - And you found all my things. Thank you!
+  - I will send you on your way shortly. Take a last look around if you want to.
   typingSpeed: 15
   typingSound: {fileID: 8300000, guid: 8a6dad7d708abe04ca93bb3046fa9e8f, type: 3}

@@ -41,6 +41,9 @@ public class MainMenuController : MonoBehaviour
         for (int i = 0; i < gameStats.completedLevels.Length; i++) {
             gameStats.completedLevels[i] = false;
         }
+        for (int i = 0; i < gameStats.collectibles.Length; i++) {
+            gameStats.collectibles[i] = false;
+        }
         gameStats.lastOldManDialogue = -1;
         gameStats.nextOldManDialogue = 0;
         // End reset
@@ -53,7 +56,7 @@ public class MainMenuController : MonoBehaviour
             greyOutImage.color = new Color(0, 0, 0, i);
             yield return null;
         }
-        SceneManager.LoadScene("LoadingScene");
+        SceneManager.LoadScene("HubScene");
     }
 
     public void UpdateSettings() {

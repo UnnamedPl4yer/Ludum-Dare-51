@@ -15,5 +15,5 @@ MonoBehaviour:
   speaker: 
   lines:
   - A portal has opened somewhere!
-  typingSpeed: 20
+  typingSpeed: 15
   typingSound: {fileID: 8300000, guid: 8a6dad7d708abe04ca93bb3046fa9e8f, type: 3}

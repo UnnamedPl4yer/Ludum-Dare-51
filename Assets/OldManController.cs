@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OldManController : MonoBehaviour
 {
@@ -14,16 +15,15 @@ public class OldManController : MonoBehaviour
 
     void Start() {
         // Debug! Take out before build!
-        gameStats.lastOldManDialogue = -1;
-        gameStats.nextOldManDialogue = 0;
+        // gameStats.lastOldManDialogue = -1;
+        // gameStats.nextOldManDialogue = 0;
         // End debug
 
         dialogueScript = GetComponent<DialogueScript>();
         hubManager = GetComponent<HubManager>();
         // Debug.Log((gameStats.lastOldManDialogue == gameStats.nextOldManDialogue));
-        if (gameStats.lastOldManDialogue == gameStats.nextOldManDialogue) {
-            return;
-        }
+        if (gameStats.lastOldManDialogue == gameStats.nextOldManDialogue) return;
+        if (gameStats.collectibles[gameStats.collectibles.Length - 1]) return;
         StartCoroutine(WaitStartDialogue());
         // gameStats.collectibles[0] = true;
     }
@@ -59,11 +59,18 @@ public class OldManController : MonoBehaviour
             hubManager.UnlockPortal(0);
             return;
         }
+        // all collected
+        StartCoroutine(LoadWinningScene());
         
         // for (int i = 0; i < gameStats.collectibles.Length; i++) {
         //     if (gameStats.collectibles[i]) {
         //         hubManager.UnlockPortal(i);
         //     }
         // }
+    }
+
+    IEnumerator LoadWinningScene() {
+        yield return new WaitForSeconds(15.0f);
+        SceneManager.LoadScene("WinningScene");
     }
 }

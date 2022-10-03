@@ -16,6 +16,8 @@ public class Scene01Controller : MonoBehaviour
         }
         portal.SetActive(true);
         if (!dialogueStarted){
+            // only increase once
+            gameStats.nextOldManDialogue += 1;
             dialogueScript.StartDialogue(portalOpenedDialogue);
             dialogueStarted = true;
         }
