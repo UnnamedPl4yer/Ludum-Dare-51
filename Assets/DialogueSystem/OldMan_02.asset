@@ -27,8 +27,8 @@ MonoBehaviour:
     from here.
   - But be careful...# We are not alone in these woods. There is a monster nearby!
   - However, it is only able to track you every 10 seconds and chasing the spot it
-    suspects you in. So if you see it coming, you have some time to get away from
-    it.
+    suspects you in.
+  - So if you see it coming, you have some time to get away from it.
   - If it gets close to you, it will start hunting! So just don't end up in a dead
     end or else you're dead meat.
   - After you have collected all 5 objects, a portal back to here will open in the

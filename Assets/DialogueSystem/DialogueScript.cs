@@ -15,7 +15,7 @@ public class DialogueScript : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         audioSource = GetComponent<AudioSource>();
-        dialogueParent.SetActive(false);
+        // dialogueParent.SetActive(false);
         // speakerElement.text = string.Empty;
         // textElement.text = string.Empty;
         // Debug.Log(dialogue.lines);

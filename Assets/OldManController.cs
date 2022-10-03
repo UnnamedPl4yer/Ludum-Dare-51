@@ -24,10 +24,15 @@ public class OldManController : MonoBehaviour
         if (gameStats.lastOldManDialogue == gameStats.nextOldManDialogue) {
             return;
         }
+        StartCoroutine(WaitStartDialogue());
+        // gameStats.collectibles[0] = true;
+    }
+
+    IEnumerator WaitStartDialogue() {
+        yield return new WaitForSeconds(1.0f);
         dialogueScript.StartDialogue(dialogues[gameStats.nextOldManDialogue]);
         gameStats.lastOldManDialogue = gameStats.nextOldManDialogue;
         gameStats.nextOldManDialogue += 1;
-        // gameStats.collectibles[0] = true;
     }
 
     // void Update() {
