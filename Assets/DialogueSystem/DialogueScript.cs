@@ -11,6 +11,7 @@ public class DialogueScript : MonoBehaviour
     private Dialogue dialogue;
     private int index;
     private AudioSource audioSource;
+    private bool isTalking = false;
 
     // Start is called before the first frame update
     void Start() {
@@ -22,7 +23,7 @@ public class DialogueScript : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetKeyDown(KeyCode.F) && isTalking) {
             if (textElement.text == dialogue.lines[index].Replace("#", string.Empty)) {
                 NextLine();
             } else {
@@ -33,6 +34,7 @@ public class DialogueScript : MonoBehaviour
     }
 
     public void StartDialogue(Dialogue dialogueToSpeak) {
+        if (isTalking) return;
         dialogue = dialogueToSpeak;
         index = 0;
         dialogueParent.SetActive(true);
@@ -42,7 +44,7 @@ public class DialogueScript : MonoBehaviour
             speakerElement.text = string.Empty;
         }
         textElement.text = string.Empty;
-
+        isTalking = true;
         StartCoroutine(TypeLine());
     }
 
@@ -58,6 +60,7 @@ public class DialogueScript : MonoBehaviour
             StartCoroutine(TypeLine());
         } else {
             dialogueParent.SetActive(false);
+            isTalking = false;
         }
     }
 

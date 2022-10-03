@@ -12,6 +12,7 @@ public class OldManController : MonoBehaviour
     private bool isSpeaking = false;
     private HubManager hubManager;
 
+    public GameObject emptyToDisableAfterFirstDialogue;
 
     void Start() {
         // Debug! Take out before build!
@@ -30,9 +31,12 @@ public class OldManController : MonoBehaviour
 
     IEnumerator WaitStartDialogue() {
         yield return new WaitForSeconds(1.0f);
+        emptyToDisableAfterFirstDialogue.SetActive(true);
         dialogueScript.StartDialogue(dialogues[gameStats.nextOldManDialogue]);
         gameStats.lastOldManDialogue = gameStats.nextOldManDialogue;
         gameStats.nextOldManDialogue += 1;
+        yield return new WaitForSeconds(2.0f);
+        emptyToDisableAfterFirstDialogue.SetActive(false);
     }
 
     // void Update() {

@@ -36,7 +36,7 @@ public class MonsterMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         audioController = GetComponent<PlayerAudioController>();
         aiPath.maxSpeed = moveSpeed;
-        aiPath.endReachedDistance = 0.1f;
+        // aiPath.endReachedDistance = 0.1f;
         StartCoroutine(WaitUntilCanMove());
     }
 
@@ -69,7 +69,7 @@ public class MonsterMovement : MonoBehaviour
     void StalkPlayer() {
         // Debug.Log("stalk start");
         aiPath.canMove = canMove;
-        // if (!canMove) return;
+        if (!canMove) return;
             // Debug.Log("stalk cannot move return " + canMove);
         // Debug.Log("stalk 1");
         // Debug.Log("Distance to player: " + aiPath.remainingDistance);
@@ -152,21 +152,25 @@ public class MonsterMovement : MonoBehaviour
             targetNode = AstarPath.active.GetNearest(playerTransform.position + targetingInaccuracy).node; // * breathMultiplier * stealthMultiplier).node;
         }
         // Debug.Log("get destination 3");
-        debugDestination = (Vector3)(targetNode.position);
         // Debug.Log( (Vector3)(targetNode.position) );
         // Debug.Log("get destination 4");
-        transform.position = (Vector3)(currentNode.position);
         return (Vector3)(targetNode.position);
     }
 
     // Player located - start the hunt
     void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.tag == "Player") isHunting = true;
+        if (col.gameObject.tag == "Player") {
+            isHunting = true;
+            canMove = true;
+        }
     }
 
     // Player too far away - stop the hunt
     void OnTriggerExit2D(Collider2D col) {
-        if (col.gameObject.tag == "Player") isHunting = false;
+        if (col.gameObject.tag == "Player") {
+            isHunting = false;
+            canMove = !isSearching;
+        }
     }
 
     // Stop movement when player is caught
