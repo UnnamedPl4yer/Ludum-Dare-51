@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public GameSettings settings;
+
     public Transform playerTransform;
     public float cameraSpeed = 2.0f;
+
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip themeMusic;
+
+    void Start() {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = settings.musicVolume;
+        audioSource.clip = themeMusic;
+        audioSource.loop = true;
+        audioSource.playOnAwake = true;
+        audioSource.Play();
+    }
 
     // Update is called once per frame
     void Update() {
