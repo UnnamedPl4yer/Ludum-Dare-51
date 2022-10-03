@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GameStats
   m_EditorClassIdentifier: 
   completedLevels: 0000000000
-  collectibles: 0101010101
-  lastOldManDialogue: 2
-  nextOldManDialogue: 2
+  collectibles: 0000000000
+  lastOldManDialogue: -1
+  nextOldManDialogue: 0

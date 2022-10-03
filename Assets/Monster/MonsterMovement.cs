@@ -18,6 +18,7 @@ public class MonsterMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float sleepTime; // seconds
     [SerializeField] private bool canMove = false;
+    private PlayerAudioController audioController;
     
     // Debug
     private Vector3 debugDestination = Vector3.zero;
@@ -33,6 +34,7 @@ public class MonsterMovement : MonoBehaviour
     void Start() {
         aiGrid = AstarPath.active.data.gridGraph;
         animator = GetComponent<Animator>();
+        audioController = GetComponent<PlayerAudioController>();
         aiPath.maxSpeed = moveSpeed;
         aiPath.endReachedDistance = 0.1f;
         StartCoroutine(WaitUntilCanMove());
@@ -71,9 +73,6 @@ public class MonsterMovement : MonoBehaviour
             // Debug.Log("stalk cannot move return " + canMove);
         // Debug.Log("stalk 1");
         // Debug.Log("Distance to player: " + aiPath.remainingDistance);
-        aiPath.Move(aiPath.desiredVelocity.normalized * moveSpeed * Time.deltaTime);
-        // Debug.Log("stalk 2");
-        // rb.velocity = aiPath.desiredVelocity.normalized * moveSpeed * Time.deltaTime;
         if (aiPath.reachedDestination && !isSearching) {
             // Debug.Log("stalk reached destination start");
             canMove = false;
@@ -82,6 +81,11 @@ public class MonsterMovement : MonoBehaviour
             StartCoroutine(WaitUntilCanMove());
             // Debug.Log("stalk reached destination end");
         }
+        aiPath.Move(aiPath.desiredVelocity.normalized * moveSpeed * Time.deltaTime);
+        if (canMove) audioController.PlayStepSound();
+        // Debug.Log("stalk 2");
+        // rb.velocity = aiPath.desiredVelocity.normalized * moveSpeed * Time.deltaTime;
+        
         // Debug.Log("stalk end");
     }
 
@@ -90,6 +94,7 @@ public class MonsterMovement : MonoBehaviour
         aiPath.canMove = isHunting;
         aiPath.destination = playerTransform.position;
         aiPath.Move(aiPath.desiredVelocity.normalized * moveSpeed * Time.deltaTime);
+        audioController.PlayStepSound();
         // rb.velocity = aiPath.desiredVelocity.normalized * moveSpeed * Time.deltaTime;
         // Debug.Log("hunt end");
     }

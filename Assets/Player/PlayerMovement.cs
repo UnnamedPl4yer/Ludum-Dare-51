@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float maxMoveSpeed = 5.0f;
     public float moveSpeed = 5.0f;
     private Vector2 moveVector;
     
@@ -12,10 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private GameObject interactInfo;
     private bool canInteractWithTarget = false;
-    private bool canInteractWithPortal = false;
     private bool canInteractWithNPC = false;
     private TargetController targetObject;
-    private PortalController portalObject;
     private OldManController npcObject;
 
     private PlayerAudioController audioController;
@@ -32,8 +31,9 @@ public class PlayerMovement : MonoBehaviour
     void Update() {
         if (Input.GetMouseButton(1)) { // igniting torch
             // animator.SetBool("igniting", true);
-            moveVector = new Vector2(0, 0);
-            return;
+            moveSpeed = maxMoveSpeed / 4;
+        } else {
+            moveSpeed = maxMoveSpeed;
         }
 
         // Movement
@@ -49,9 +49,6 @@ public class PlayerMovement : MonoBehaviour
         if (canInteractWithTarget && Input.GetKeyDown(KeyCode.F)) {
             targetObject.PickUp();
             audioController.PlayPickUpSound();
-        }
-        if (canInteractWithPortal && Input.GetKeyDown(KeyCode.F)) {
-            portalObject.Teleport();
         }
 
         // animator.SetBool("igniting", false);
@@ -70,7 +67,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate() {
-
         rb.velocity = moveVector * moveSpeed;
     }
 
@@ -88,11 +84,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col){
-        if (col.gameObject.tag == "Portal") {
-            interactInfo.SetActive(true);
-            canInteractWithPortal = true;
-            portalObject = col.gameObject.GetComponent<PortalController>();
-        }
         if (col.gameObject.tag == "Target") {
             interactInfo.SetActive(true);
             canInteractWithTarget = true;
@@ -106,11 +97,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D col){
-        if (col.gameObject.tag == "NPC") {
-            interactInfo.SetActive(false);
-            canInteractWithPortal = false;
-            portalObject = null;
-        }
         if (col.gameObject.tag == "Target") {
             interactInfo.SetActive(false);
             canInteractWithTarget = false;
