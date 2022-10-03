@@ -333,6 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepSound: {fileID: 8300000, guid: 621b325b2a5ff184a865ca20daf6d56e, type: 3}
+  pickUpSound: {fileID: 8300000, guid: bd54518391758af4c8353b901fa04c86, type: 3}
   settings: {fileID: 11400000, guid: 72c6961e2e42ad644ad8e06cb6cb39e3, type: 2}
 --- !u!82 &8300882633082769874
 AudioSource:

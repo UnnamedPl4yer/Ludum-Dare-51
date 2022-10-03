@@ -8,7 +8,7 @@ public class TargetController : MonoBehaviour
     public GameStats gameStats;
     public int myObjective;
 
-    public void Teleport() {
+    public void PickUp() {
         gameStats.collectibles[myObjective] = true;
         gameStats.completedLevels[myObjective] = true;
         gameObject.SetActive(false);

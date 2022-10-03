@@ -27,6 +27,7 @@ public class CameraController : MonoBehaviour
         position.x = Mathf.Lerp(transform.position.x, playerTransform.position.x, cameraSpeed * Time.deltaTime);
         position.y = Mathf.Lerp(transform.position.y, playerTransform.position.y, cameraSpeed * Time.deltaTime);
         transform.position = position;
+        audioSource.volume = settings.musicVolume;
     }
 
     IEnumerator LerpToPlayerLocation(float durationInSeconds) {

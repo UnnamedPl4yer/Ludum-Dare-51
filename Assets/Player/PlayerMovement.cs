@@ -35,20 +35,25 @@ public class PlayerMovement : MonoBehaviour
             moveVector = new Vector2(0, 0);
             return;
         }
+
+        // Movement
+        GetMovement();
+        if (moveVector.magnitude >= 0.1f) {
+            audioController.PlayStepSound();
+        }
+        
+        // Interations
         if (canInteractWithNPC && Input.GetKeyDown(KeyCode.F)) {
             npcObject.SpeakNextDialogue();
         }
         if (canInteractWithTarget && Input.GetKeyDown(KeyCode.F)) {
-            targetObject.Teleport();
+            targetObject.PickUp();
+            audioController.PlayPickUpSound();
         }
         if (canInteractWithPortal && Input.GetKeyDown(KeyCode.F)) {
             portalObject.Teleport();
         }
 
-        GetMovement();
-        if (moveVector.magnitude >= 0.1f) {
-            audioController.PlayStepSound();
-        }
         // animator.SetBool("igniting", false);
         animator.SetBool("moving", moveVector.magnitude > 0.0f);
         float localScaleX = transform.localScale.x;
