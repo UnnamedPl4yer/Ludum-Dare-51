@@ -69,6 +69,7 @@ public class MonsterMovement : MonoBehaviour
     void StalkPlayer() {
         // Debug.Log("stalk start");
         aiPath.canMove = canMove;
+        monsterMeterController.isHunting = isHunting;
         if (!canMove) return;
             // Debug.Log("stalk cannot move return " + canMove);
         // Debug.Log("stalk 1");

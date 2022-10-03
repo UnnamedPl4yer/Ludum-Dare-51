@@ -8,6 +8,7 @@ public class MonsterMeterController : MonoBehaviour
     public float maxTime;
     private float remainingTime;
     private bool timeRunning = false;
+    public bool isHunting = false;
 
     [SerializeField] private Image monsterStateIcon;
     [SerializeField] private Sprite monsterWatchingIcon;
@@ -44,7 +45,7 @@ public class MonsterMeterController : MonoBehaviour
     }
 
     void UpdateIcon() {
-        if (timeRunning) {
+        if (timeRunning || isHunting) {
             monsterStateIcon.sprite = monsterWaitingIcon;
             return;
         }

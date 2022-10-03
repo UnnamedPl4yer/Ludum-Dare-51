@@ -74,7 +74,7 @@ public class OldManController : MonoBehaviour
     }
 
     IEnumerator LoadWinningScene() {
-        yield return new WaitForSeconds(15.0f);
+        yield return new WaitForSeconds(10.0f);
         SceneManager.LoadScene("WinningScene");
     }
 }
