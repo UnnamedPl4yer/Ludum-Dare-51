@@ -22,8 +22,18 @@ public class MainMenuController : MonoBehaviour
     private float fadeInTime = 2f;
     public Image greyOutImage;
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip themeMusic;
+
     void Start() {
         greyOutImage.gameObject.SetActive(false);
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = settings.musicVolume;
+        audioSource.clip = themeMusic;
+        audioSource.loop = true;
+        audioSource.playOnAwake = true;
+        audioSource.Play();
     }
 
     public void StartGame() {
@@ -35,7 +45,7 @@ public class MainMenuController : MonoBehaviour
         gameStats.nextOldManDialogue = 0;
         // End reset
         greyOutImage.gameObject.SetActive(true);
-        StartCoroutine(FadeImageIn());        
+        StartCoroutine(FadeImageIn());
     }
 
     IEnumerator FadeImageIn() {
@@ -56,6 +66,7 @@ public class MainMenuController : MonoBehaviour
     public void SetMusicVolume() {
         // Debug.Log(musicVolumeSlider.value);
         musicVolume = (float)System.Math.Round(musicVolumeSlider.value, 2);
+        audioSource.volume = musicVolume;
     }
 
     public void SetSFXVolume() {
